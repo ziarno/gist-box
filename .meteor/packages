@@ -19,3 +19,10 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 practicalmeteor:mocha
 practicalmeteor:chai
+accounts-ui
+accounts-github
+react-meteor-data
+maxharris9:classnames
+ziarno:refresh-sound
+less
+johnantoni:meteor-normalize
