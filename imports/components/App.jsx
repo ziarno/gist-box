@@ -12,7 +12,13 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <GistsManager {...this.props} />
+        {this.props.user ? (
+          <GistsManager {...this.props} />
+        ) : (
+          <div className="app-message">
+            <h3>Please login</h3>
+          </div>
+        )}
       </div>
     )
   }
