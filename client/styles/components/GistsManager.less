@@ -1,0 +1,13 @@
+@import '/client/styles/partials/vars.import.less';
+
+.gists-manager {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+
+  & > div:not(:last-child) {
+    border-right: @border;
+    min-height: calc(~"100vh" - @header-height)
+  }
+
+}

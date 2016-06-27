@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from './Header'
+import GistsManager from './GistsManager'
 
 const propTypes = {
   user: React.PropTypes.object
@@ -11,6 +12,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
+        <GistsManager {...this.props} />
       </div>
     )
   }
