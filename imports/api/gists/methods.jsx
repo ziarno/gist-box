@@ -5,10 +5,6 @@ import {HTTP} from 'meteor/http'
 import _ from 'underscore'
 
 function getGists(url) {
-  if (this.isSimulation) {
-    return
-  }
-
   return request({
     url,
     userId: Meteor.userId()
@@ -16,9 +12,6 @@ function getGists(url) {
 }
 
 function upsertGist(gist, gistId) {
-  if (this.isSimulation) {
-    return
-  }
   const method = gistId ? 'PATCH' : 'POST'
   const url = 'gists' + (gistId ? `/${gistId}` : '')
 
@@ -48,10 +41,6 @@ Meteor.methods({
   },
 
   getAllGists() {
-    if (this.isSimulation) {
-      return
-    }
-
     function getArrayData(methodName) {
       try {
         return Meteor.call(methodName).data
@@ -78,10 +67,6 @@ Meteor.methods({
   },
 
   removeGist(gistId) {
-    if (this.isSimulation) {
-      return
-    }
-
     this.unblock()
     return request({
       method: 'DELETE',
