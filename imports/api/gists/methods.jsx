@@ -33,14 +33,17 @@ function upsertGist(gist, gistId) {
 Meteor.methods({
 
   getOwnGists() {
+    this.unblock()
     return getGists.call(this, 'gists')
   },
 
   getStarredGists() {
+    this.unblock()
     return getGists.call(this, 'gists/starred')
   },
 
   getGistDetails(gistId) {
+    this.unblock()
     return getGists.call(this, `gists/${gistId}`)
   },
 
@@ -57,6 +60,7 @@ Meteor.methods({
       }
     }
 
+    this.unblock()
     const ownGists = getArrayData('getOwnGists')
     const starredGists = getArrayData('getStarredGists')
 
@@ -64,10 +68,12 @@ Meteor.methods({
   },
 
   createGist(gist) {
+    this.unblock()
     return upsertGist.call(this, gist)
   },
 
   editGist(gist, gistId) {
+    this.unblock()
     return upsertGist.call(this, gist, gistId)
   },
 
@@ -76,6 +82,7 @@ Meteor.methods({
       return
     }
 
+    this.unblock()
     return request({
       method: 'DELETE',
       url: `gists/${gistId}`,
