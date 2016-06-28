@@ -26,3 +26,5 @@ maxharris9:classnames
 ziarno:refresh-sound
 less
 johnantoni:meteor-normalize
+http
+hwillson:stub-collections
