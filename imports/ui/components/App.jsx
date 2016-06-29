@@ -3,17 +3,20 @@ import Header from './Header'
 import GistsManagerContainer from '../containers/GistsManagerContainer'
 
 const propTypes = {
-  user: React.PropTypes.object
+  user: React.PropTypes.object,
+  ready: React.PropTypes.bool
 }
 
 class App extends React.Component {
 
   render() {
+    const {ready, user} = this.props
+
     return (
       <div>
         <Header />
-        {this.props.user ? (
-          <GistsManagerContainer />
+        {ready ? (
+          <GistsManagerContainer user={user} />
         ) : (
           <div className="app-message">
             <h3>Please login</h3>
