@@ -6,7 +6,7 @@ import {sinon} from 'meteor/practicalmeteor:sinon'
 import StubCollections from 'meteor/hwillson:stub-collections'
 import '../methods'
 
-const {assert, expect} = chai
+const {assert} = chai
 
 describe('gists methods', function () {
 

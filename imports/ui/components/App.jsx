@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from './Header'
-import GistsManager from './GistsManager'
+import GistsManagerContainer from '../containers/GistsManagerContainer'
 
 const propTypes = {
   user: React.PropTypes.object
@@ -13,7 +13,7 @@ class App extends React.Component {
       <div>
         <Header />
         {this.props.user ? (
-          <GistsManager {...this.props} />
+          <GistsManagerContainer />
         ) : (
           <div className="app-message">
             <h3>Please login</h3>

@@ -11,7 +11,7 @@ Libraries and frameworks used:
 - Less
 - Underscore
 
-Application directory structure is based on the one in [Meteor Guide](https://guide.meteor.com/structure.html#example-app-structure)
+Application directory structure is based on [Meteor Guide](https://guide.meteor.com/structure.html#example-app-structure)
 
 Tests
 ------------
@@ -23,3 +23,8 @@ Libraries and frameworks used:
 Running tests:
 
 `meteor test --driver-package practicalmeteor:mocha --port 3100`
+
+Notes
+-----
+
+Switching the status of a users gist between public and private is no longer available in github API v3.
