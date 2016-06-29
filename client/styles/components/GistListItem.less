@@ -1,0 +1,25 @@
+@import '/client/styles/partials/vars.import.less';
+
+@image-size: 40px;
+
+.gist-list-item {
+  border-bottom: @border;
+  font-size: 0.9em;
+  cursor: pointer;
+  padding: 10px;
+
+  &:hover {
+    background-color: rgba(0,0,0,0.1);
+  }
+
+  .gist-list-item--info {
+    p {
+      margin: 3px;
+    }
+  }
+
+  img {
+    width: @image-size;
+    height: @image-size;
+  }
+}
