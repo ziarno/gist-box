@@ -2,6 +2,7 @@ import React from 'react'
 import GistGroupLabel from './GistGroupLabel'
 import _ from 'underscore'
 import Gists from '../../api/gists/Gists'
+import {Session} from 'meteor/session'
 
 const propTypes = {
   gists: React.PropTypes.arrayOf(
