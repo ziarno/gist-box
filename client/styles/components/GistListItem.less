@@ -4,18 +4,16 @@
 
 .gist-list-item {
   border-bottom: @border;
-  font-size: 0.9em;
+  font-size: 0.8em;
   cursor: pointer;
   padding: 10px;
 
-  &:hover {
+  &:hover, &.active {
     background-color: rgba(0,0,0,0.1);
   }
 
-  .gist-list-item--info {
-    p {
-      margin: 3px;
-    }
+  &.active {
+    cursor: default;
   }
 
   img {

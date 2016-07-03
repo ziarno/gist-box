@@ -1,23 +1,21 @@
 import React from 'react'
 import _ from 'underscore'
+import {classNames} from 'meteor/maxharris9:classnames'
+import GistBasicInfo from './GistBasicInfo'
 
-export default function ({gist, onClick}) {
-  const {
-    description,
-    owner,
-    files
-    } = gist
+export default function GistListItem({gist, onClick, active}) {
+  const {owner} = gist
   return (
     <div
-      className="gist-list-item"
-      onClick={onClick}
+      className={classNames('gist-list-item', {
+        active
+      })}
+      onClick={() => onClick(gist)}
     >
       <img src={owner.avatar_url} />
-      <div className="gist-list-item--info">
-        <p>Description: {description}</p>
-        <p>Files: {_.size(files)}</p>
-        <p>{gist.public ? 'Public' : 'Private'}</p>
-      </div>
+      <GistBasicInfo
+        gist={gist}
+      />
     </div>
   )
 }

@@ -2,29 +2,27 @@ import React from 'react'
 import {mount} from 'enzyme'
 import {chai} from 'meteor/practicalmeteor:chai'
 import App from '../App'
+import {sinon} from 'meteor/practicalmeteor:sinon'
 import {user} from '../../../mocks'
 
 const {expect} = chai
 
 describe('App', function () {
   it('renders a header', function () {
-    const app = mount(<App user={user} />)
+    const app = mount(<App />)
     expect(app.find('.header').isEmpty()).to.be.false
   })
 
-  it('takes a user prop', function () {
-    const app = mount(<App user={user} />)
-    expect(app.prop('user')).to.equal(user)
-  })
-
-  it('does not display GistsManager if user is not logged in', function () {
+  it('renders GistsManager if not ready', function () {
     const app = mount(<App />)
     expect(app.find('.gists-manager').isEmpty()).to.be.true
   })
 
-  it('renders GistsManager if user is logged in', function () {
-    const app = mount(<App user={user} ready />)
+  it('renders GistsManager if ready', function () {
+    sinon.stub(Meteor, 'user').returns(user)
+    const app = mount(<App ready />)
     expect(app.find('.gists-manager').isEmpty()).to.be.false
+    Meteor.user.restore()
   })
 
 })

@@ -2,7 +2,7 @@ import React from 'react'
 
 export const gists = [
   {
-    _id: 'gist1',
+    id: 'gist1',
     description: 'Test gist description 1',
     public: false,
     files: {
@@ -19,7 +19,7 @@ export const gists = [
     }
   },
   {
-    _id: 'gist2',
+    id: 'gist2',
     description: 'Test gist description 2',
     public: true,
     files: {
@@ -36,7 +36,7 @@ export const gists = [
     }
   },
   {
-    _id: 'gist3',
+    id: 'gist3',
     description: 'Test gist description 3',
     public: false,
     files: {

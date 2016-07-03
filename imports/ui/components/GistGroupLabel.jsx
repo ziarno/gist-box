@@ -1,20 +1,17 @@
 import React from 'react'
 
-export default function ({gists, title, onClick}) {
+export default function GistGroupLabel({count, title, onClick}) {
   return (
     <span className="gist-group-label">
         <a
           className="gist-group-label--link"
           href="#"
-          onClick={(e) => {
-            e.preventDefault()
-            onClick(gists)
-          }}
+          onClick={onClick}
         >
           {title}
         </a>
         <span className="gist-group-label--count">
-          ({gists.length})
+          ({count})
         </span>
       </span>
   )

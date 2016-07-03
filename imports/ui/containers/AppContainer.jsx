@@ -6,7 +6,6 @@ export default createContainer(function () {
   const userData = Meteor.subscribe('userData')
   const user = Meteor.user()
   return {
-    user,
     ready: user && userData.ready()
   }
 }, App)

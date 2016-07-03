@@ -8,8 +8,12 @@ const {expect} = chai
 
 describe('GistsList', function () {
   const title = 'Gists'
+  const activeGist = gists[0]
   const gistsList = mount(
-    <GistsList gists={gists} />
+    <GistsList
+      gists={gists}
+      activeGist={activeGist}
+    />
   )
 
   it('renders a title', function () {

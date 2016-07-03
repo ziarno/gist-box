@@ -70,7 +70,7 @@ describe('gists methods', function () {
   describe('getGistDetails', function () {
     it('makes a correct call to get gist details', function () {
       const gistId = 'testGistId'
-      Meteor.call('getGistDetails', gistId)
+      Meteor.call('getGistDetails', {gistId})
 
       assert(HTTP.call.calledWith(
         'GET',
@@ -118,7 +118,7 @@ describe('gists methods', function () {
           }
         }
       }
-      Meteor.call('createGist', gist)
+      Meteor.call('createGist', {gist})
 
       assert(HTTP.call.calledWith(
         'POST',
@@ -143,7 +143,7 @@ describe('gists methods', function () {
         }
       }
       const gistId = 'testGistId'
-      Meteor.call('editGist', gist, gistId)
+      Meteor.call('editGist', {gist, gistId})
 
       assert(HTTP.call.calledWith(
         'PATCH',
@@ -159,7 +159,7 @@ describe('gists methods', function () {
   describe('removeGist', function () {
     it('makes a correct call to remove a gist', function () {
       const gistId = 'testGistId'
-      Meteor.call('removeGist', gistId)
+      Meteor.call('removeGist', {gistId})
 
       assert(HTTP.call.calledWith(
         'DELETE',

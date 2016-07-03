@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import {Meteor} from 'meteor/meteor'
 import AppContainer from '../../ui/containers/AppContainer'
 
-import './accounts-config'
+import './config'
 
 Meteor.startup(function () {
   ReactDOM.render(

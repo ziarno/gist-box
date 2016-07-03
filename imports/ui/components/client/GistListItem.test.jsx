@@ -1,5 +1,5 @@
 import React from 'react'
-import {shallow} from 'enzyme'
+import {mount} from 'enzyme'
 import {chai} from 'meteor/practicalmeteor:chai'
 import GistListItem from '../GistListItem'
 import {gists} from '../../../mocks'
@@ -8,13 +8,14 @@ import _ from 'underscore'
 
 const {assert, expect} = chai
 
-describe('GistGroupLabel', function () {
+describe('GistListItem', function () {
   const spy = sinon.spy()
   const gist = gists[0]
-  const gistListItem = shallow(
+  const gistListItem = mount(
     <GistListItem
       gist={gist}
       onClick={spy}
+      active
     />
   )
 
@@ -32,9 +33,9 @@ describe('GistGroupLabel', function () {
   it('renders correct gist info', function () {
     assert(
       gistListItem
-        .find('.gist-list-item--info')
+        .find('.gist-basic-info')
         .containsMatchingElement(
-          <div className="gist-list-item--info">
+          <div className="gist-basic-info">
             <p>Description: {gist.description}</p>
             <p>Files: {_.size(gist.files)}</p>
             <p>{gist.public ? 'Public' : 'Private'}</p>

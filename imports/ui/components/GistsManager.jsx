@@ -1,76 +1,34 @@
 import React from 'react'
-import Menu from './Menu'
-import GistsList from './GistsList'
-import GistDetails from './GistDetails'
+import GistsListContainer from '../containers/GistsListContainer'
+import GistDetailsContainer from '../containers/GistDetailsContainer'
+import MenuContainer from '../containers/MenuContainer'
 import Gists from '../../api/gists/Gists'
-import _ from 'underscore'
-
-const propTypes = {
-  gists: React.PropTypes.arrayOf(
-    React.PropTypes.object
-  ).isRequired,
-  user: React.PropTypes.object.isRequired
-}
 
 class GistsManager extends React.Component {
 
-  constructor() {
-    super()
-    this.state = {
-      gistsToShow: []
-    }
-    this.showGistsList = this.showGistsList.bind(this)
-    this.showGistDetails = this.showGistDetails.bind(this)
-  }
-
-  fetchGists() {
+  static fetchGists() {
     Meteor.call('getAllGists', function (err, gists) {
       if (!err) {
         Gists.remove({})
-        gists.forEach(gist => Gists.insert({
-          _id: gist.id,
-          ...gist
-        }))
+        gists.forEach(gist => Gists.insert(gist))
       }
     })
   }
 
   componentDidMount() {
-    this.fetchGists()
-  }
-
-  showGistsList(gistsToShow) {
-    this.setState({
-      gistsToShow
-    })
-  }
-
-  showGistDetails(gist) {
-    //TODO
+    GistsManager.fetchGists()
   }
 
   render() {
-    const {gists, user} = this.props
-    const {gistsToShow} = this.state
-
     return (
       <div className="gists-manager">
-        <Menu
-          gists={gists}
-          user={user}
-          onShowGists={this.showGistsList}
-        />
-        <GistsList
-          gists={gistsToShow}
-          onShowGist={this.showGistDetails}
-        />
-        <GistDetails />
+        <MenuContainer />
+        <GistsListContainer />
+        <GistDetailsContainer />
       </div>
     )
   }
 
 }
-
-GistsManager.propTypes = propTypes
 
 export default GistsManager

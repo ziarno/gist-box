@@ -1,7 +1,7 @@
 import React from 'react'
 import BlazeTemplate from './BlazeTemplate'
 
-export default function () {
+export default function Header() {
   return (
     <div className="header">
       <BlazeTemplate

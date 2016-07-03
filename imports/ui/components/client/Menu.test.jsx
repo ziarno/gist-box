@@ -4,19 +4,29 @@ import {chai} from 'meteor/practicalmeteor:chai'
 import Menu from '../Menu'
 import {gists, user} from '../../../mocks'
 import {sinon} from 'meteor/practicalmeteor:sinon'
+import StubCollections from 'meteor/hwillson:stub-collections'
+import Gists from '../../../api/gists/Gists'
 
 const {expect} = chai
 
 describe('Menu', function () {
   const title = 'Menu'
-  const onShowGistsSpy = sinon.spy()
-  const menu = render(
-    <Menu
-      gists={gists}
-      user={user}
-      onShowGists={onShowGistsSpy}
-    />
-  )
+  let menu
+
+  beforeEach(function () {
+    StubCollections.stub(Gists)
+    gists.forEach(gist => Gists.insert(gist))
+    menu = render(
+      <Menu
+        gists={gists}
+        user={user}
+      />
+    )
+  })
+
+  afterEach(function () {
+    StubCollections.restore(Gists)
+  })
 
   it('renders a title', function () {
     expect(menu.find('h3').text()).to.equal(title)
