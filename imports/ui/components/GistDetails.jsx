@@ -2,6 +2,7 @@ import React from 'react'
 import GistDetailsDisplay from './GistDetailsDisplay'
 import GistDetailsEdit from './GistDetailsEdit'
 import Gists from '../../api/gists/Gists'
+import {Session} from 'meteor/session'
 
 const propTypes = {
   gist: React.PropTypes.object,
