@@ -21,5 +21,15 @@ export function onAfterUpsert(userId, gistDoc) {
       }
     })
   }
+}
 
+export function onAfterRemove(userId, {id, labels}) {
+  if (labels.length) {
+    labels.forEach(label => {
+      Meteor.call('removeLabelFromGist', {
+        label,
+        gistId: id
+      })
+    })
+  }
 }

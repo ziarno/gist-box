@@ -5,7 +5,7 @@ import {sinon} from 'meteor/practicalmeteor:sinon'
 import Gists from '../Gists'
 import Labels from '../../labels/Labels'
 
-import {onAfterUpsert} from '../hooks-functions'
+import {onAfterUpsert, onAfterRemove} from '../hooks-functions'
 
 const {assert} = chai
 
@@ -51,6 +51,24 @@ describe('gists hooks', function () {
         }
       })
     )
+  })
+
+  it('updates the Labels collection when a gist is removed', function () {
+    sinon.stub(Meteor, 'call')
+    onAfterRemove(null, {
+      id: testGistId,
+      labels: [testLabel]
+    })
+    assert(
+      Meteor.call.calledWith(
+        'removeLabelFromGist',
+        {
+          label: testLabel,
+          gistId: testGistId
+        }
+      )
+    )
+    Meteor.call.restore()
   })
 
 })
