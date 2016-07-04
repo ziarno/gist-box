@@ -95,12 +95,14 @@ class GistDetailsEdit extends React.Component {
           >
             Save
           </button>
-          <button
-            className="gist-details--remove-button"
-            onClick={onRemove}
-          >
-            Remove
-          </button>
+          {!createNew ? (
+            <button
+              className="gist-details--remove-button"
+              onClick={onRemove}
+            >
+              Remove
+            </button>
+          ) : null}
         </div>
         {createNew ? (
           <div className="gist-details--edit-public">
