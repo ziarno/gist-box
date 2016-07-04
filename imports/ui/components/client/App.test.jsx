@@ -13,7 +13,7 @@ describe('App', function () {
     expect(app.find('.header').isEmpty()).to.be.false
   })
 
-  it('renders GistsManager if not ready', function () {
+  it('does not render GistsManager if not ready', function () {
     const app = mount(<App />)
     expect(app.find('.gists-manager').isEmpty()).to.be.true
   })

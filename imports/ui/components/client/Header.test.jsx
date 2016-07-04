@@ -5,7 +5,7 @@ import Header from '../Header'
 import {Session} from 'meteor/session'
 import {Tracker} from 'meteor/tracker'
 
-const {assert} = chai
+const {assert, expect} = chai
 
 describe('Header', function () {
 
@@ -29,6 +29,7 @@ describe('Header', function () {
     expect(
       header.instance().state.loading
     ).to.be.true
+    Session.set('loading', null)
   })
 
 })
