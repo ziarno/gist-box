@@ -2,7 +2,7 @@ import React from 'react'
 import Gists from './Gists'
 import Labels from '../labels/Labels'
 
-export function onAfterInsert(userId, gistDoc) {
+export function onAfterUpsert(userId, gistDoc) {
   const labels = Labels.find({
     userId,
     gistIds: gistDoc.id
@@ -13,7 +13,7 @@ export function onAfterInsert(userId, gistDoc) {
   }).fetch()
 
   if (labels.length) {
-    Gists.update({
+    Gists.direct.update({
       id: gistDoc.id
     }, {
       $set: {

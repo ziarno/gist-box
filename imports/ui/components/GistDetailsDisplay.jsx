@@ -1,6 +1,8 @@
 import React from 'react'
 import GistBasicInfo from './GistBasicInfo'
 import FileDisplay from './FileDisplay'
+import LabelAdderContainer from '../containers/LabelAdderContainer'
+import Label from './Label'
 import _ from 'underscore'
 
 export default function GistDetailsDisplay({gist, onEdit, onRemove, isEditable}) {
@@ -24,6 +26,20 @@ export default function GistDetailsDisplay({gist, onEdit, onRemove, isEditable})
       ) : null}
       <GistBasicInfo
         gist={gist}
+      />
+      <span>Labels: </span>
+      {_.map(gist.labels, label => (
+        <Label
+          key={label}
+          label={label}
+          onRemove={() => Meteor.call('removeLabelFromGist', {
+            label,
+            gistId: gist.id
+          })}
+        />
+      ))}
+      <LabelAdderContainer
+        gistId={gist.id}
       />
       {_.map(gist.files, ({content}, fileName) => (
         <FileDisplay

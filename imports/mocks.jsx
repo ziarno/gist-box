@@ -62,3 +62,18 @@ export const user = {
     }
   }
 }
+
+export const labels = [
+  {
+    label: 'testLabel1',
+    gistIds: ['gist1', 'gist2']
+  },
+  {
+    label: 'testLabel2',
+    gistIds: ['gist3']
+  },
+  {
+    label: 'testLabel3',
+    gistIds: ['gist1']
+  }
+]

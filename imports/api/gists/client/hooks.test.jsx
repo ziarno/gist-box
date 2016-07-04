@@ -5,9 +5,9 @@ import {sinon} from 'meteor/practicalmeteor:sinon'
 import Gists from '../Gists'
 import Labels from '../../labels/Labels'
 
-import {onAfterInsert} from '../hooks-functions'
+import {onAfterUpsert} from '../hooks-functions'
 
-const {expect} = chai
+const {assert} = chai
 
 describe('gists hooks', function () {
   const testUserId = 'testUserId'
@@ -18,6 +18,7 @@ describe('gists hooks', function () {
     StubCollections.stub(Labels)
     StubCollections.stub(Gists)
     sinon.stub(Meteor, 'userId').returns(testUserId)
+    sinon.stub(Gists.direct, 'update')
     Meteor.call('createLabel', {label: testLabel})
     Meteor.call('addLabelToGist', {
       label: testLabel,
@@ -28,26 +29,28 @@ describe('gists hooks', function () {
   afterEach(function () {
     StubCollections.restore(Labels)
     StubCollections.restore(Gists)
+    Gists.direct.update.restore()
     Meteor.userId.restore()
   })
 
   it('populates a Gists collection item with a labels field ' +
      'from the Labels collection when inserting a gist', function () {
-    let gist
     Gists.insert({
       id: testGistId
     })
-    onAfterInsert(
+    onAfterUpsert(
       testUserId,
       {id: testGistId}
     )
-    gist = Gists.findOne({id: testGistId})
-    expect(
-      gist.labels.length
-    ).to.equal(1)
-    expect(
-      gist.labels[0]
-    ).to.equal(testLabel)
+    assert(
+      Gists.direct.update.calledWith({
+        id: testGistId
+      }, {
+        $set: {
+          labels: [testLabel]
+        }
+      })
+    )
   })
 
 })
