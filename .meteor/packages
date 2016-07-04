@@ -29,3 +29,4 @@ johnantoni:meteor-normalize
 http
 hwillson:stub-collections
 session
+matb33:collection-hooks
