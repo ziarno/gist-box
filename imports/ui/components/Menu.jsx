@@ -13,12 +13,7 @@ const propTypes = {
 
 class Menu extends React.Component {
 
-  constructor() {
-    super()
-    this.showGistsList = this.showGistsList.bind(this)
-  }
-
-  showGistsList(selector) {
+  static showGistsList(selector) {
     Session.set('gistsListSelector', selector)
   }
 
@@ -46,7 +41,7 @@ class Menu extends React.Component {
               <GistGroupLabel
                 count={Gists.find(selector).count()}
                 title={title}
-                onClick={() => this.showGistsList(selector)}
+                onClick={Menu.showGistsList.bind(Menu, selector)}
               />
             </li>
           ))}
