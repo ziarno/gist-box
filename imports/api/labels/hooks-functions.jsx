@@ -18,14 +18,10 @@ export function onAfterUpdate(userId, labelDoc, fieldNames, modifier) {
   })
 }
 
-export function onAfterRemove(userId, {label, gistIds}) {
-  Gists.update({
-    id: {
-      $in: gistIds
-    }
-  }, {
+export function onAfterRemove(userId, {label}) {
+  Gists.direct.update({}, {
     $pull: {
       labels: label
     }
-  })
+  }, {multi: true})
 }
