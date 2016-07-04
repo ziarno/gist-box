@@ -26,6 +26,12 @@ class LabelAdder extends React.Component {
     })
   }
 
+  componentWillReceiveProps({labels}) {
+    if (!this.state.currentLabel && labels.length) {
+      this.state.currentLabel = labels[0]
+    }
+  }
+
   render() {
     const {labels} = this.props
     const {currentLabel} = this.state
