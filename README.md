@@ -1,6 +1,7 @@
 GistBox
 -------
 A simple app to manage github gists.
+Note: styling was *not* the focus of this task, therefore it was kept to a bare minimum.
 
 Running the app
 ---------------
